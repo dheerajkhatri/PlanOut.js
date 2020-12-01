@@ -134,7 +134,7 @@ const WeightedChoiceBuilder = (RandomOpsClass) => class extends RandomOpsClass {
     var stopVal = this.getUniform(0.0, cumSum);
     for (var i = 0; i < cumWeights.length; ++i) {
       if (stopVal <= cumWeights[i]) {
-        return choices[i];
+        return {choice: choices[i], stopVal: stopVal};
       }
     }
   }

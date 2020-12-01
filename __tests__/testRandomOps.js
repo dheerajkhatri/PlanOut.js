@@ -189,7 +189,7 @@ describe('Test randomization ops', function() {
       for (var i = 0; i < N; i++) {
         var a = new Assignment(weights.join(', '));
         a.set('x', new Random.WeightedChoice({ 'choices': choices, 'weights': weights, 'unit': i }));
-        xs[i] = a.get('x');
+        xs[i] = a.get('x').choice;
       }
       return xs;
     }
@@ -219,7 +219,7 @@ describe('Test randomization ops', function() {
     for (var i = 0; i < N; i++) {
       var a = new Assignment('falsy');
       a.set('x', new Random.WeightedChoice({ 'choices': [0, false, undefined, 1], 'weights': [1, 1, 1, 1], 'unit': i}));
-      counts[a.get('x')]++;
+      counts[a.get('x').choice]++;
     }
     Object.keys(counts).forEach(function(key) {
       expect(counts[key]).not.toBe(0);
@@ -235,7 +235,7 @@ describe('Test randomization ops', function() {
       for (var i = 0; i < N; i++) {
         var a = new AssignmentCompat(weights.join(', '));
         a.set('x', new RandomCompat.WeightedChoice({ 'choices': choices, 'weights': weights, 'unit': i }));
-        xs[i] = a.get('x');
+        xs[i] = a.get('x').choice;
       }
       return xs;
     }
@@ -265,7 +265,7 @@ describe('Test randomization ops', function() {
     for (var i = 0; i < N; i++) {
       var a = new Assignment('falsy');
       a.set('x', new Random.WeightedChoice({ 'choices': [0, false, undefined, 1], 'weights': [1, 1, 1, 1], 'unit': i}));
-      counts[a.get('x')]++;
+      counts[a.get('x').choice]++;
     }
     Object.keys(counts).forEach(function(key) {
       expect(counts[key]).not.toBe(0);
